@@ -36,6 +36,7 @@ public class POJOTesting {
                 accept(ContentType.JSON).
                 when().
                 get("/jobs");
+        System.out.println(response.prettyPrint());
 
         JsonPath jsonPath = response.jsonPath();
         //this is deserialization

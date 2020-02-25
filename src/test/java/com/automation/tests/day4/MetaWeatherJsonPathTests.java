@@ -19,9 +19,10 @@ import static org.hamcrest.Matchers.*;
 
 public class MetaWeatherJsonPathTests {
 
-    //TILL 4:10 with break time
+
     @BeforeAll
     public static void setup() {
+
         baseURI = ConfigurationReader.getProperty("meta.weather.uri");
     }
 
@@ -157,9 +158,8 @@ public class MetaWeatherJsonPathTests {
 
         assertEquals(expected, actual);
 
-//        Break till 11:15
     }
-//
+
 //            * Given accept type is JSON
 //            * When users sends a GET request to "/location/{woid}"
 //            * And path parameter is '44418'

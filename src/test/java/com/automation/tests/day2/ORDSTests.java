@@ -22,7 +22,7 @@ public class ORDSTests {
 
     //ec2-34-201-69-55.compute-1.amazonaws.com - my host, you have something else
     //   /ords/hr or //ords/hr/employees - same for all
-    private String baseURI = "http://ec2-34-201-69-55.compute-1.amazonaws.com:1000/ords/hr";
+    private String baseURI = "http://ec2-54-152-156-255.compute-1.amazonaws.com:1000/ords/hr";
 
     //we start from given()
     //then we can specify type of request like: get(), put(), delete(), post()
@@ -62,6 +62,13 @@ public class ORDSTests {
         System.out.println("What kind of content server sends to you, in this response: "+response.getHeader("Content-Type"));
     }
 
+    /**
+     * HTTP/1.1 200 OK
+     * Date: Wed, 12 Feb 2020 20:43:07 GMT
+     * Content-Type: application/json
+     * ETag: "SJBggY7Dj4dqvJ39c33QL0W7HOzZNpUMad9Ok9o4m1QUJz7wpRpntnoFwwfrqHOeqah6+TJtAff3t0Lu3j/yyg=="
+     * Transfer-Encoding: chunked
+     */
 //    #Task: perform GET request to /regions, print body and all headers.
     @Test
     public void test3(){

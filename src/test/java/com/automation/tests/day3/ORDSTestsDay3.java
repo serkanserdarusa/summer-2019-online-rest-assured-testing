@@ -22,7 +22,8 @@ import static org.hamcrest.Matchers.*;
 public class ORDSTestsDay3 {
 
     @BeforeAll
-    public static void setup() {
+    public static void setup()
+    {
         baseURI = ConfigurationReader.getProperty("ords.uri");
     }
 
@@ -91,7 +92,7 @@ public class ORDSTestsDay3 {
                 when().
                 get("/employees").
                 thenReturn().jsonPath();
-
+       // System.out.println(json.prettyPrint());
         //items[employee1, employee2, employee3] | items[0] = employee1.first_name = Steven
 
         String nameOfFirstEmployee = json.getString("items[0].first_name");
@@ -152,7 +153,7 @@ public class ORDSTestsDay3 {
                                  when().
                                         get("/employees").
                                  thenReturn().jsonPath().get("items.salary");
-        Collections.sort(salaries, Collections.reverseOrder());//sort from a to z, 0-9
+      Collections.sort(salaries, Collections.reverseOrder());//sort from a to z, 0-9
         System.out.println(salaries);
     }
 

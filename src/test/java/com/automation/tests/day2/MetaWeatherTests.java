@@ -44,7 +44,7 @@ public class MetaWeatherTests {
     @Test
     public void test2() {
         Response response = given()
-                .pathParam("woeid", "2458833")
+                .pathParam("woeid", "2459115")
                 .get(baseURI + "location/{woeid}");
         System.out.println(response.prettyPrint());
 

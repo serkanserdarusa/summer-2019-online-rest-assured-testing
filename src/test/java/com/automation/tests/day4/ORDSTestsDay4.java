@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.*;
 public class ORDSTestsDay4 {
     @BeforeAll
     public static void setup() {
+
         baseURI = ConfigurationReader.getProperty("ords.uri");
     }
 

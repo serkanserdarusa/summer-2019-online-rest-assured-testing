@@ -39,6 +39,7 @@ public class ExchangeRatesAPITests {
         Response response = given().
                 baseUri(baseURI + "latest").
                 queryParam("base", "USD").
+
                 get();
         assertEquals(200, response.getStatusCode());
         System.out.println(response.prettyPrint());
@@ -51,7 +52,7 @@ public class ExchangeRatesAPITests {
                 baseUri(baseURI + "latest").
                 queryParam("base", "GBP").
                 get();
-
+        System.out.println(response.prettyPrint());
         String todaysDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         System.out.println("Today's date: " + todaysDate);
@@ -89,6 +90,7 @@ public class ExchangeRatesAPITests {
                 queryParam("base", "USD").
                 get();
         String body = response.getBody().asString();
+        System.out.println(body);
         assertEquals(200, response.getStatusCode());
         assertTrue(body.contains("\"base\":\"USD\""));
     }
