@@ -26,8 +26,13 @@ public class POJOTesting {
 
     @BeforeAll
     public static void setup() {
+
         baseURI = ConfigurationReader.getProperty("ords.uri");
     }
+
+
+
+
 
     @Test
     @DisplayName("Get job info from JSON and convert it into POJO")
@@ -41,7 +46,8 @@ public class POJOTesting {
         JsonPath jsonPath = response.jsonPath();
         //this is deserialization
         // from JSON to POJO (java object)
-        Job job = jsonPath.getObject("items[0]", Job.class);//Job.class type of POJO that you gonna create from JSON
+        Job job = jsonPath.getObject("items[0]", Job.class);
+        //Job.class type of POJO that you gonna create from JSON
 
         System.out.println(job);
 
@@ -52,12 +58,15 @@ public class POJOTesting {
     @DisplayName("Convert from POJO to JSON")
     public void test2() {
         Job sdet = new Job("SDET", " Software Development Engineer in Test", 5000, 20000);
-
+           Job test=new Job("QA","Aotomation Engineer",4000,9000);
         Gson gson = new Gson();
         String json = gson.toJson(sdet); // convert POJO to JSON: serialization
-
+        String test1=gson.toJson(test);
         System.out.println("JSON file" + json);
         System.out.println("From toString(): " + sdet);
+        System.out.println("============");
+
+
     }
 
     @Test
@@ -69,7 +78,7 @@ public class POJOTesting {
                 get("/jobs");
 
         JsonPath jsonPath = response.jsonPath();
-        List<Job> jobs = jsonPath.getList("items", Job.class);
+        List<Job>jobs = jsonPath.getList("items", Job.class);
 
         for (Job job : jobs) {
             System.out.println(job.getJob_title());
@@ -77,6 +86,32 @@ public class POJOTesting {
 
         for (Job job : jobs) {
             System.out.println(job);
+        }
+    }
+
+    @Test
+    @DisplayName("Convert from JSON to Location POJO")
+    public void test44() {
+        Response response = given().
+                accept(ContentType.JSON).
+                when().
+                get("/locations");
+
+        Location location = response.jsonPath().getObject("items[0]", Location.class);
+
+        System.out.println(location);
+        System.out.println("===========================");
+
+        Response response2 = given().
+                accept(ContentType.JSON).
+                when().
+                get("/locations");
+        System.out.println(response2.prettyPrint());
+        System.out.println("=======================");
+        List<Location> locations = response2.jsonPath().getList("items", Location.class);
+
+        for(Location l: locations){
+            System.out.println(l);
         }
     }
 

@@ -53,7 +53,8 @@ public class ORDSTestsDay5 {
 
         //we are asserting that average salary is grater than 5000
         assertTrue(avg > 5000, "ERROR: actually average salary is lower than 5000: "+avg);
-
+        System.out.println(avg);
+        System.out.println(response.jsonPath().getString("items.salary"));
     }
 
 }

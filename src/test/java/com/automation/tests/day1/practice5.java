@@ -201,20 +201,30 @@ public class practice5 {
                  *  3100, 2900, 2800, 2600, 2500
                  *
                  */
+                @Test
+                @DisplayName("verify salary")
+                public void test66(){
+                    Integer[] arr={24000, 17000, 17000, 12008, 11000,
+                            9000, 9000, 8200, 8200, 8000,
+                            7900, 7800, 7700, 6900, 6500,
+                            6000, 5800, 4800, 4800, 4200,
+                            3100, 2900, 2800, 2600, 2500};
+                    List<Integer>expectedsalary=new ArrayList<>(Arrays.asList(arr));
+
+                    Response response=given().
+                                      contentType(ContentType.JSON).
+                                      when().
+                            get("/employees");
+                            assertEquals(200,response.getStatusCode());
+
+                       List<Integer>actualsalary=response.jsonPath().getList("items.salary") ;
+                    System.out.println(actualsalary);
+                    Collections.sort(actualsalary,Collections.reverseOrder());
+                       assertEquals(expectedsalary,actualsalary);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+                }
 
 
                 @Test
@@ -251,6 +261,25 @@ public class practice5 {
                  *
                  */
 
+                @Test
+                @DisplayName("Verify that JSON body has following entries")
+                public void test77 () {
+
+                    given().
+                                     contentType(ContentType.JSON).
+                                     pathParam("id",2900).
+                            when().
+                            get("/locations/{id}").
+                            then().assertThat().assertThat().statusCode(200).
+                            body("",hasEntry("street_address","20 Rue des Corps-Saints")).
+                            body("",hasEntry("city","Geneva")).
+                            body("",hasEntry("postal_code","1730")).
+                            body("",hasEntry("country_id","CH")).
+                            body("",hasEntry("state_province","Geneve")).log().all(true);
+
+
+
+                }
                 @Test
                 @DisplayName("Verify that JSON body has following entries")
                 public void test7 () {

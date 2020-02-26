@@ -11,7 +11,8 @@ public class Address {
 
     }
 
-    public Address(String city, String state, String street, int zipCode) {
+    public Address(int addressId, String city, String state, String street, int zipCode) {
+        this.addressId = addressId;
         this.city = city;
         this.state = state;
         this.street = street;
@@ -20,6 +21,10 @@ public class Address {
 
     public int getAddressId() {
         return addressId;
+    }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 
     public String getCity() {

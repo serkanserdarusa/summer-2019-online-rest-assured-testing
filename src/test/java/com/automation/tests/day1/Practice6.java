@@ -35,6 +35,24 @@ public class Practice6 {
      */
 
     @Test
+    @DisplayName("verify body has 5 objects")
+    public void test11(){
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("query","New")
+                .when()
+                .get("/search")
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("",hasSize(5)).log().body(true);
+
+    }
+
+
+
+
+    @Test
     @DisplayName("Verify that are 5 cities that are matching 'New'")
     public void test1() {
         given().
@@ -60,6 +78,45 @@ public class Practice6 {
      * |title   |location_type|woeid  |latt_long          |
      * |New York|City         |2459115|40.71455,-74.007118|
      */
+
+    @Test
+    @DisplayName("Verifies that 1st city has following info:New York, City, 2459115, 40.71455,-74.007118")
+    public void test22() {
+
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("query","new")
+                .when()
+                .get("/search")
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("title[1]",is("New Delhi"))
+                .body("location_type[1]",is("City"))
+                .body("woeid[1]",is(28743736))
+                .body("latt_long[1]",is("28.643999,77.091003")).log().body(true);
+
+
+    }
+    @Test
+    @DisplayName("Verifies that 1st city has following info:New York, City, 2459115, 40.71455,-74.007118")
+    public void test222() {
+
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("query", "new")
+                .when()
+                .get("/search")
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("", hasEntry("title[0]", "New Yok"))
+                .body("", hasEntry("location_type[0]", "City"))
+                .body("", hasEntry("woeid[0]", 2459115))
+                .body("", hasEntry("latt_long[0]", "240.71455,-74.007118")).log().body(true);
+    }
+
+    //has entry work until if you wrote all path
     @Test
     @DisplayName("Verifies that 1st city has following info:New York, City, 2459115, 40.71455,-74.007118")
     public void test2() {
@@ -119,16 +176,16 @@ public class Practice6 {
                 queryParam("query", "Las").
                 when().
                 get("/search").
-                then().assertThat().body("title", hasItems("Glasgow", "Dallas", "Las Vegas"));
+                then().assertThat().body("title", hasItems("Glasgow", "Dallas", "Las Vegas")).log().body(true);
         //hasItems - exact match
-        //containsItems - partial match
+        //contains- partial match
     }
 
-    //            * TASK
-    //* Given accept type is JSON
-    //* When users sends a GET request to "/search"
-//            * And query parameter is 'Las'
-//            * Then verify that every item in payload has location_type City
+     //            * TASK
+    //             * Given accept type is JSON
+    //             * When users sends a GET request to "/search"
+    //             * And query parameter is 'Las'
+    //             * Then verify that every item in payload has location_type City
     @Test
     @DisplayName("Verify that every item in payload has location_type City")
     public void test4() {
