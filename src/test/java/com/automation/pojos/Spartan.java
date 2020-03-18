@@ -33,10 +33,12 @@ public class Spartan {
     }
 
     public int getSpartanId() {
+
         return spartanId;
     }
 
     public void setSpartanId(int spartanId) {
+
         this.spartanId = spartanId;
     }
 

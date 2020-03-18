@@ -29,6 +29,7 @@ public class BearerTokenTestsWithBookit {
 
     @BeforeAll
     public static void setup() {
+
         baseURI = ConfigurationReader.getProperty("bookit.qa1");
     }
 

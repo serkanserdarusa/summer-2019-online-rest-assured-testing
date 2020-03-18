@@ -28,6 +28,7 @@ import static org.hamcrest.Matchers.*;
 public class BadSSLTest {
     @BeforeAll
     public static void before(){
+
         baseURI = "https://untrusted-root.badssl.com/";
     }
 

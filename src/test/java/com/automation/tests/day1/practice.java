@@ -8,6 +8,7 @@ package com.automation.tests.day1;
         import io.restassured.response.ValidatableResponse;
         import org.junit.jupiter.api.Test;
         import org.w3c.dom.ls.LSOutput;
+        import spark.utils.Assert;
 
         import static io.restassured.RestAssured.baseURI;
         import static io.restassured.RestAssured.given;
@@ -23,7 +24,7 @@ public class practice {
      * .then()
      * Validate the status code, extract response, ectract headers, cookies, extract the response body
      */
-    private  String baseURI="http://ec2-54-152-156-255.compute-1.amazonaws.com:1000/ords/hr";
+    private  String baseURI="http://ec2-100-26-144-145.compute-1.amazonaws.com:1000/ords/hr";
 
 
     @Test
@@ -36,6 +37,7 @@ public class practice {
 
 
     }
+
     @Test
     public void test1(){
 
@@ -71,7 +73,7 @@ public class practice {
             contentType(ContentType.JSON).
             get(baseURI+"/regions");
 
-Headers header=response.getHeaders();
+   Headers header=response.getHeaders();
     System.out.println(response.getHeaders());
 
     for(Header h:header){

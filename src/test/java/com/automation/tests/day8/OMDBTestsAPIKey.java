@@ -28,6 +28,7 @@ import static org.hamcrest.Matchers.*;
 public class OMDBTestsAPIKey {
     @BeforeAll
     public static void setup() {
+
         baseURI = ConfigurationReader.getProperty("omdb.uri");
     }
 

@@ -54,6 +54,6 @@ public class PreschoolTests {
         assertEquals("7925 Jones Branch Dr #3300", student.getContact().getPermanentAddress());
         assertEquals("sdet@email.com", student.getContact().getEmailAddress());
 
-    //comeback at 4:15
+
     }
 }

@@ -87,17 +87,21 @@ public class SpartansTestsDay7 {
     public void test3(){
         Map<String, Object> update = new HashMap<>();
 
-        update.put("name", "Lynda");
+        update.put("name", "SErkan");
         update.put("gender", "Female");
 
         given().
                 contentType(ContentType.JSON).
                 body(update).
-                pathParam("id", 904).
+                pathParam("id", 4).
         when().
                 patch("/spartans/{id}").prettyPeek().
         then().assertThat().
                 statusCode(204);
+        Response response=given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/spartans").prettyPeek();
         //since response doesn't contain body, after PATCH request,
         //we don't need  accept(ContentType.JSON).
         // PUT - all parameters

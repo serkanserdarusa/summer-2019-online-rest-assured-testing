@@ -150,13 +150,19 @@ public class SpartanTests {
         Response response = given().
                 contentType(ContentType.JSON).
                 when().
-                get("/spartans");
+                get("/spartans").prettyPeek();
 
-        List<Map<String, ?>> collection = response.jsonPath().get();
+        List<Map<String,?>>collection1=response.jsonPath().get();
 
-        for (Map<String, ?> map : collection) {
-            System.out.println(map);
-        }
+        System.out.println(collection1);
+
+    for( Map<String,?> each:collection1){
+        System.out.println(each);
+    }
+        Map<String, ?>collection = response.jsonPath().getMap("[0]",String.class,String.class);
+       System.out.println(collection);
+
+//
     }
 
     /**
@@ -200,10 +206,7 @@ public class SpartanTests {
         //builder pattern, one of the design patterns in OOP
         //instead of having too many different constructors
         //we can use builder pattern and chain with{preopertyName} methods to specify properties of an object
-        Spartan spartan1 = new Spartan().
-                withGender("Male").
-                withName("Some User").
-                withPhone(5712134235L);
+        Spartan spartan1 = new Spartan().withGender("Male").withName("Some User").withPhone(5712134235L);
 
         Spartan spartan = new Spartan();
         spartan.setGender("Male");//Male or Female
@@ -261,7 +264,8 @@ public class SpartanTests {
         //userIDs.size()/2 - represents half of the spartans
         for (int i = 0; i < userIDs.size() / 2; i++) {
             //will delete spartan based on id that you specify
-            when().delete("/spartans/{id}", userIDs.get(i));
+            when().
+                    delete("/spartans/{id}", userIDs.get(i));
         }
 
 //        Response response2 = when().delete("/spartans/{id}", idOfTheUserThatYouWantToDelete);
@@ -337,19 +341,24 @@ public class SpartanTests {
     @DisplayName("Update only name with PATCH")
     public void test10(){
          Map<String, Long> update = new HashMap<>();
-         update.put("phone", 10000000000L);
+         update.put("phone", 7708797689L);
 
          Response response = given().
                                 accept(ContentType.JSON).
                                 contentType(ContentType.JSON).
                                 body(update).
-                                pathParam("id", 381).
+
+                                pathParam("id", 40).
                             patch("/spartans/{id}");
 
-         response.prettyPrint();
+                           response.prettyPrint();
+        Response response1 = given().
+                accept(ContentType.JSON).
+                when().get("/spartans");
+        System.out.println(response1.prettyPrint());
      //POST - add new spartan
      //PUT - update existing one, but you have to specify all properties
-     //PATCH - update existing one, but ypu may specify one or more properties to update
+     //PATCH - update existing one, but you may specify one or more properties to update
 
 
     }

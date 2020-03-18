@@ -31,7 +31,6 @@ public class practice2 {
     @Test
     public void test1() {
 
-
         Response response = given().
                 contentType(ContentType.JSON).
                 queryParam("base", "TRY").
@@ -41,7 +40,6 @@ public class practice2 {
     }
     @Test
     public void test2() {
-
 
         Response response = given().
                 contentType(ContentType.JSON).

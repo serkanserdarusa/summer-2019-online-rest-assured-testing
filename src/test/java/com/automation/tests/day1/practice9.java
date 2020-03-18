@@ -1,6 +1,7 @@
 package com.automation.tests.day1;
 
 import com.automation.pojos.Job;
+import com.automation.pojos.Location;
 import com.automation.utilities.ConfigurationReader;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -33,5 +34,19 @@ public class practice9 {
         List<Job> job=jsonPath.getList("items",Job.class);
         System.out.println(job);
 
+    }
+
+    @Test
+    @DisplayName("Get job info from JSON and convert it into POJO")
+    public void test2() {
+
+        Response response=given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("locations");
+        JsonPath jsonPath=response.jsonPath();
+
+        List<Location>location=jsonPath.getList("items",Location.class);
+        System.out.println(location);
     }
 }

@@ -26,13 +26,20 @@ public class SchoolTests {
 
     @BeforeAll
     public static void setup(){
+
         baseURI = ConfigurationReader.getProperty("school.uri");
     }
+
+    @Override
+    public String toString() {
+        return "SchoolTests{}";
+    }
+
 
     @Test
     @DisplayName("Create and Delete student")
     public void test1(){
-        String json = "{\n" +
+        String studentJsonBody= "{\n" +
                 "  \"admissionNo\": \"1234\",\n" +
                 "  \"batch\": 12,\n" +
                 "  \"birthDate\": \"01/01/1890\",\n" +
@@ -52,7 +59,7 @@ public class SchoolTests {
                 "    \"phone\": \"240-123-1231\",\n" +
                 "    \"premanentAddress\": \"7925 Jones Branch Dr\"\n" +
                 "  },\n" +
-                "  \"firstName\": \"James\",\n" +
+                "  \"firstName\": \"Serkansss\",\n" +
                 "  \"gender\": \"Males\",\n" +
                 "  \"joinDate\": \"01/01/3321\",\n" +
                 "  \"lastName\": \"Bond\",\n" +
@@ -65,12 +72,12 @@ public class SchoolTests {
         //create student
         Response response = given().
                                 contentType(ContentType.JSON).
-                                body(json).
+                                body(studentJsonBody).
                             post("student/create").prettyPeek();
 
         int studentId = response.jsonPath().getInt("studentId");
-
-//        //delete student
+        System.out.println(studentId);
+        //delete student
         Response response2 = given().
                                 accept(ContentType.JSON).
                             when().
@@ -79,13 +86,14 @@ public class SchoolTests {
 
     }
 
+
     @Test
     @DisplayName("Delete student")
     public void test2(){
         Response response2 = given().
                 accept(ContentType.JSON).
                 when().
-                delete("student/delete/{id}", 58).
+                delete("student/delete/{id}", 5659).
                 prettyPeek();
     }
 

@@ -210,9 +210,9 @@ public class Practice6 {
                 pathParam("woeid", 44418).
                 when().
                 get("/location/{woeid}");
-
+        System.out.println(response.prettyPrint());
         List<String> actual = response.jsonPath().getList("sources.title");
-
+        System.out.println(actual);
         assertEquals(expected, actual);
 
     }

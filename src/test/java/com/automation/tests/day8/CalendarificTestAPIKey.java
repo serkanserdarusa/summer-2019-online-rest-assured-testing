@@ -28,7 +28,8 @@ import static org.hamcrest.Matchers.*;
 
 public class CalendarificTestAPIKey {
     @BeforeAll
-    public static void setup() {
+    public static void setup()
+    {
         baseURI = ConfigurationReader.getProperty("calendarific.uri");
     }
 
